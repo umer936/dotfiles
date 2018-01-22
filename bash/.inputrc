@@ -1,0 +1,17 @@
+$include /etc/inputrc
+
+# Perform file completion in a case insensitive fashion
+set completion-ignore-case on
+
+# Treat hyphens and underscores as equivalent
+set completion-map-case on
+
+set visible-stats on
+
+set show-all-if-ambiguous on
+
+# Search commands through history
+# arrow up
+"\e[A":history-search-backward
+# arrow down
+"\e[B":history-search-forward
