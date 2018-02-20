@@ -170,11 +170,14 @@ alias path='echo $PATH | tr -s ":" "\n"'
 
 export PATH=$PATH:/home/umer936/.cargo/bin
 
-source /opt/ros/lunar/setup.bash
-source /home/umer936/catkin_ws/devel/setup.bash
+include () {
+    [[ -f "$1" ]] && source "$1"
+}
+
+include /opt/ros/kinetic/setup.bash
+include /home/umer936/catkin_ws/devel/setup.bash
 export GAZEBO_MODEL_PATH=/media/umer936/0048c298-fac2-41c0-93a9-44888b949733/TAR/ardupilot_gazebo/gazebo_models
-export PATH=$PATH:$HOME/ardupilot/Tools/autotest
-export PATH=/usr/lib/ccache:$PATH
+export PATH=/usr/lib/ccache:$PATH:$HOME/ardupilot/Tools/autotest
 
 tailc () {
     tail $@ | ccze -A
