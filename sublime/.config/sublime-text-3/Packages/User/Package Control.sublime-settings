@@ -1,0 +1,39 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"AutoFileName",
+		"Better CoffeeScript",
+		"Better JavaScript",
+		"Case Conversion",
+		"Color Highlighter",
+		"Compare Side-By-Side",
+		"CSS Completions",
+		"CSScomb",
+		"DictionaryAutoComplete",
+		"FindDoc",
+		"Git",
+		"GitGutter",
+		"GitSyntaxes",
+		"Glue",
+		"JsonTree",
+		"Keymaps",
+		"LESS",
+		"lessc",
+		"LiveStyle",
+		"Numix Theme",
+		"Package Control",
+		"Pretty JSON",
+		"Rust Enhanced",
+		"RustFmt",
+		"Terminal",
+		"Theme - Cyanide",
+		"Themr",
+		"Underscorejs snippets",
+		"xml2json"
+	]
+}
