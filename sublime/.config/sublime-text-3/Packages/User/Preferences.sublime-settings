@@ -6,5 +6,17 @@
 		"JavaScript",
 		"Vintage"
 	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"always_show_minimap_viewport": true,
+	"auto_find_in_selection": true,
+	"ensure_newline_at_eof_on_save": true,
+	"highlight_line": true,
+	"indent_to_bracket": true,
+	"trim_trailing_white_space_on_save": true,
 	"theme": "Numix Dark.sublime-theme"
+
 }
