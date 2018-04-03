@@ -139,3 +139,9 @@ include /opt/ros/kinetic/setup.bash
 include /home/umer936/catkin_ws/devel/setup.bash
 export GAZEBO_MODEL_PATH=/media/umer936/0048c298-fac2-41c0-93a9-44888b949733/TAR/ardupilot_gazebo/gazebo_models
 export PATH=/usr/lib/ccache:$PATH:$HOME/ardupilot/Tools/autotest
+
+eval "$(fasd --init auto)"
+alias v='f -e vim' # quick opening files with vim
+alias e='f -e subl' # quick opening files with subl
+alias vid='f -e vlc' # quick opening files with vlc
+alias o='a -e xdg-open' # quick opening files with xdg-open

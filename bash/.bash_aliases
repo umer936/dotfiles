@@ -22,8 +22,10 @@ alias .....="cd ../../../.."
 alias mv='mv -v'
 alias rm='rm -i'
 alias cp='cp -v'
+alias exi='exit'
 
-alias quick_maths='mdlt simplify'
+#alias quick_maths='mdlt simplify'
+alias quick_maths='tcalc'
 
 # Get External IP / local IPs
 alias ip_public='curl ipinfo.io/ip'
