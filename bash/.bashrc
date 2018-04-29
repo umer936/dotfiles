@@ -98,7 +98,7 @@ alias lsd='ls -l | grep "^d"' # only directories
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Functions used later are defined here 
+# Functions used later are defined here
 include () {
     [[ -f "$1" ]] && source "$1"
 }
@@ -106,6 +106,24 @@ include () {
 tailc () {
     tail $@ | ccze -A
 }
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# Remove games from path
+PATH=${PATH/":/usr/games"/""}
+PATH=${PATH/":/usr/local/games"/""}
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -133,11 +151,9 @@ export DEBFULLNAME="Umer Salman"
 
 #eval "$(_DOITLIVE_COMPLETE=source doitlive)"
 
-export PATH=$PATH:/home/umer936/.cargo/bin
-
-include /opt/ros/kinetic/setup.bash
-include /home/umer936/catkin_ws/devel/setup.bash
 export GAZEBO_MODEL_PATH=/media/umer936/0048c298-fac2-41c0-93a9-44888b949733/TAR/ardupilot_gazebo/gazebo_models
+source /opt/ros/kinetic/setup.bash
+source ~/catkin_ws/devel/setup.bash
 export PATH=/usr/lib/ccache:$PATH:$HOME/ardupilot/Tools/autotest
 
 eval "$(fasd --init auto)"
