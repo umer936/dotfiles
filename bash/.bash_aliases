@@ -24,13 +24,10 @@ alias rm='rm -i'
 alias cp='cp -v'
 alias exi='exit'
 
-#alias quick_maths='mdlt simplify'
 alias quick_maths='tcalc'
 
 # Get External IP / local IPs
 alias ip_public='curl ipinfo.io/ip'
-#alias ip_locals='ifconfig -a | perl -nle"/(\d+\.\d+\.\d+\.\d+)/ && print $1"'
-#alias ip_local='ip -c a | rg inet | cut -c10-'
 alias ip_local='ip -o -c a | awk "{print \$2, "\t", \$4}" | column -t'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 

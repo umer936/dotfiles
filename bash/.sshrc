@@ -1,1 +1,39 @@
 echo "Howdy, Umer!"
+
+alias gitpullall='for i in */.git; do ( echo $i; cd $i/..; git pull; ); done'
+alias update='sudo apt update && sudo apt dist-upgrade && rustup update stable && cargo install-update -ag'
+alias pyclean='find . -name \*.pyc -o -name \*.pyo -o -name __pycache__ -exec rm -rv {} +'
+
+alias df='df -h'
+alias diff='diff --color=auto'
+
+# Easier navigation: .., ..., ~ and -
+alias back="cd ~-"
+alias ..="cd .."
+alias cd..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+alias mv='mv -v'
+alias rm='rm -i'
+alias cp='cp -v'
+alias exi='exit'
+
+alias quick_maths='tcalc'
+
+# Get External IP / local IPs
+alias ip_public='curl ipinfo.io/ip'
+alias ip_local='ip -o -c a | awk "{print \$2, "\t", \$4}" | column -t'
+alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+
+alias ln='ln -v'
+alias path='echo $PATH | tr -s ":" "\n"'
+
+alias git-edit-new='$EDITOR $(git ls-files --others --exclude-standard)'
+
+alias o="xdg-open"
+
+alias apti="sudo apt-get install"
+alias aptr="sudo apt-get remove"
+alias apts="sudo apt-cache search"
