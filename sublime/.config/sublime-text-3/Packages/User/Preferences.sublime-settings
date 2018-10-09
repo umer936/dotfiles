@@ -1,7 +1,7 @@
 {
 	"always_show_minimap_viewport": true,
 	"auto_find_in_selection": true,
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"file_exclude_patterns":
 	[

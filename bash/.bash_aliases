@@ -40,3 +40,13 @@ alias box='mount ~/box'
 alias lt='exa -T'
 alias ln='ln -v'
 alias path='echo $PATH | tr -s ":" "\n"'
+
+alias git-edit-new='$EDITOR $(git ls-files --others --exclude-standard)'
+
+alias o="xdg-open"
+
+alias afk="gnome-screensaver-command --lock"
+
+alias apti="sudo apt-get install"
+alias aptr="sudo apt-get remove"
+alias apts="sudo apt-cache search"

@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+unset MAILCHECK
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -88,8 +90,8 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias lr='ls -alFR'
-alias ll='ls -alF'
+alias lr='ls -halFR'
+alias ll='ls -halF'
 alias la='ls -A'
 alias l='ls -CF'
 alias lsd='ls -l | grep "^d"' # only directories
@@ -142,9 +144,33 @@ if ! shopt -oq posix; then
   fi
 fi
 
-eval "$(thefuck --alias)"
-# You can use whatever you want as an alias, like for Mondays:
-eval "$(thefuck --alias FUCK)"
+shopt -s cdspell
+
+mkd() {
+    if [ -n "$*" ]; then
+        mkdir -p "$@"
+        cd "$@" \
+            || exit 1
+    fi
+}
+
+# Search history.
+qh() {
+    #           ┌─ enable colors for pipe
+    #           │  ("--color=auto" enables colors only if
+    #           │  the output is in the terminal)
+    grep --color=always "$*" "$HISTFILE" |       less -RX
+    # display ANSI color escape sequences in raw form ─┘│
+    #       don't clear the screen after quitting less ─┘
+}
+
+
+# Find in files in folder
+foldfind() {
+    grep -ir --color=always "$*" --exclude-dir=".git" --exclude-dir="node_modules" . | less -RX
+    #     │└─ search all files under each directory, recursively
+    #     └─ ignore case
+}
 
 export EMAIL="umer936@gmail.com"
 export DEBFULLNAME="Umer Salman"
@@ -152,8 +178,8 @@ export DEBFULLNAME="Umer Salman"
 #eval "$(_DOITLIVE_COMPLETE=source doitlive)"
 
 export GAZEBO_MODEL_PATH=/media/umer936/0048c298-fac2-41c0-93a9-44888b949733/TAR/ardupilot_gazebo/gazebo_models
-source /opt/ros/kinetic/setup.bash
-source ~/catkin_ws/devel/setup.bash
+# source /opt/ros/kinetic/setup.bash
+# source ~/catkin_ws/devel/setup.bash
 export PATH=/usr/lib/ccache:$PATH:$HOME/ardupilot/Tools/autotest
 
 eval "$(fasd --init auto)"
@@ -161,3 +187,7 @@ alias v='f -e vim' # quick opening files with vim
 alias e='f -e subl' # quick opening files with subl
 alias vid='f -e vlc' # quick opening files with vlc
 alias o='a -e xdg-open' # quick opening files with xdg-open
+
+export EDITOR=subl
+
+alias UTkamek='ssh -X usalman@kamek.ece.utexas.edu'
