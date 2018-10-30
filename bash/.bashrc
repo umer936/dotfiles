@@ -49,12 +49,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
-    color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-    color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -126,6 +126,14 @@ fi
 # Remove games from path
 PATH=${PATH/":/usr/games"/""}
 PATH=${PATH/":/usr/local/games"/""}
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config
+# ignoring wildcards
+[[ -e "$HOME/.ssh/config" ]] && complete -o "default" \
+    -o "nospace" \
+    -W "$(grep "^Host" ~/.ssh/config | \
+    grep -v "[?*]" | cut -d " " -f2 | \
+    tr ' ' '\n')" scp sftp ssh sshrc
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
