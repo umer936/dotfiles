@@ -153,14 +153,36 @@ Now you can clone the repository on other machines and use stow to manage the sy
 
 If you want to sync your dotfiles across multiple machines, you can create a script that pulls the latest changes from the repository and uses stow to manage the symbolic links.
 
-Here is an example script of how you can clone the repository and use stow to manage the symbolic links:
+Before you can run the script, you need to make sure that stow is installed on the machine and that the dotfiles repository is cloned to the home directory. These commands can be added to the script to ensure that stow is installed and the repository is cloned with proper permissions.
 
+```bash
+#!/bin/bash
 
+# Clone the dotfiles repository
+git clone <remote-repository-url> ~/.dotfiles
 
+# Change to the dotfiles directory
+cd ~/.dotfiles
 
-In the `~/.dotfiles/.bin` directory, create a script called `sync-dotfiles.sh` with the following content:
+# Pull the latest changes from the repository
 
-You might need to make the script executable by running `chmod +x sync-dotfiles.sh` before you can run it as a shell script. You also might need to add the `~/.dotfiles/.bin` directory to your PATH environment variable to run the script from anywhere.
+git pull
+
+# Use stow to manage the symbolic links
+stow -d ~/.dotfiles -t ~ -S vim
+stow -d ~/.dotfiles -t ~ -S bash
+```
+
+> Notes:
+> - Replace `<remote-repository-url>` with the URL of your remote Git repository if you are using a remote repository.
+> - Make sure that the script is executable by running `chmod +x sync-dotfiles.sh` before you can run it as a shell script.
+
+## Example bash script for automating the sync process
+Here is an [example bash script](./.bin/sync-dotfiles.sh) of how you can clone the repository and use stow to manage the symbolic links:
+
+You can run this script on each machine to sync your dotfiles and manage the symbolic links using stow.
+
+# Conclusion
 
 
 # References
