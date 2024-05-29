@@ -146,3 +146,10 @@ git remote add origin <remote-repository-url>
 git push -u origin master
 ```
 
+
+
+
+# References
+- https://www.gnu.org/software/stow/
+- https://www.gnu.org/software/stow/manual/stow.html
+- https://systemcrafters.net/managing-your-dotfiles/using-gnu-stow/
