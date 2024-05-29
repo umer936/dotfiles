@@ -58,34 +58,23 @@ For the purpose of this guide, we will assume that the dotfiles folder is locate
 
 
 ## Usage 
-<!--
 
+When using the stow command, it is important to 
 
-
-When using the stow command, it is important to prefix the command with the `-d` flag to specify the directory containing the files to be linked. The `-t` flag is used to specify the target directory where the links will be created. The `-S` flag is used to specify the package to be linked. The package is the directory containing the files to be linked.
-
-The default behavior of stow without any flags is to create symbolic links in the parent directory of the package directory. This is why we use the `-t` flag to specify the target directory where the links will be created.
+prefix the command with the `-d` flag if you want to specify the directory containing the files to be linked rather than the current directory.
+The `-t` flag is used to specify the target directory where the links will be created (default is the parent directory of the current directory
+ The `-S` flag is used to specify the package to be linked. The package is the directory containing the files to be linked (default is the current directory).
+The `-D` flag is used to remove the links created by stow. The package to be unlinked is specified using the `-D` flag.
 
 ### Linking files in the dotfiles folder
 
 `stow -d ~/.dotfiles -t ~ -S {PATH/TO/FILE}`    
 
-> Note: Replace `{PATH/TO/FILE}` with the path of the file you want to link. The command will create symbolic links in the home directory to the files in the dotfiles folder.
+> Note: Replace `{PATH/TO/FILE}` with the path of the file you want to link. The command will create symbolic links in the home directory to the files in the dotfiles folder. If you omit the `-S` flag, stow will link all files in the package directory (default is the current directory).
 
 > Note: Our dotfiles directory must have the same layout as where the files would be placed under the home directory. This means you will need to have the equivalent subdirectory structure in your dotfiles folder so that all symbolic links get created in the right place. 
 >
-> For example, if you have a file `~/.vimrc` and you want to move it to the dotfiles folder, you would create a directory structure in the dotfiles folder that mirrors the home directory structure. You would then move the `.vimrc` file to the appropriate directory in the dotfiles folder and use the stow command to link it to the home directory.
-> Here is an example of the directory structure in the dotfiles folder:
-> ```
-> ~/.dotfiles
-> ├── vim
-> │   └── .vimrc
-> ```
-> In this example, the `.vimrc` file is moved to the `~/.dotfiles/vim` directory, and the stow command is used to link it to the home directory.
->
-> The stow command will create a symbolic link in the home directory to the `.vimrc` file in the `~/.dotfiles/vim` directory.
->
-> This allows you to keep all your configuration files in one place and easily manage them using stow.
+stow.
 
 ### Preparing the dotfiles folder before linking the files
 
@@ -95,41 +84,6 @@ You can use the following commands to create the directory structure in the dotf
 > Note: Replace `{PATH/TO/FILE}` with the path of the file you want to link. The command will create the directory structure in the dotfiles folder.
 
 
-## Example
-```bash
-stow -d ~/.dotfiles -t ~ -S vim
-```
-
-
-
-### Preparing the dotfiles folder before moving the files
-
-    
-The following commands will create the directory structure using the same path as the file you want to move:
-
-`mkdir -p ~/.dotfiles/{PATH/TO/FILE}`
-
-
-> Note: Replace `{PATH/TO/FILE}` with the path of the file you want to move. The command will create the directory structure in the dotfiles folder.
-
-
-### Moving the file into the dotfiles folder
-
-`mv ~/path/to/directory/of/file/file.name ~/.dotfiles/path/to/directory/of/file/`
-
-This command will move the file into the dotfiles folder and place it in the appropriate directory structure. This is helpful when you want to move a file into the dotfiles folder and link it to the home directory.
-
-
-
-
-## Example
-
-For example, to link the vim dotfiles, you would use the following command:
-
-```bash
-stow -d ~/.dotfiles -t ~ -S vim
-```
-
 This command will create symbolic links in the home directory to the files in the `~/.dotfiles/vim` directory.
 
 ## Unlinking files in the dotfiles folder
@@ -137,11 +91,58 @@ This command will create symbolic links in the home directory to the files in th
 `stow -d ~/.dotfiles -t ~ -D {PATH/TO/FILE}`
 > Note: Replace `{PATH/TO/FILE}` with the path of the file you want to unlink. The command will remove the symbolic links in the home directory to the files in the dotfiles folder.
 
+
+
 ## Example
-```bash
-stow -d ~/.dotfiles -t ~ -D vim
+For example, let's say you want to manage your `.vimrc` file using stow. You would create a directory structure in the dotfiles folder that mirrors the home directory structure. You would then move the `.vimrc` file to the appropriate directory in the dotfiles folder and use the stow command to link it to the home directory.
+
+Here is an example of the directory structure in the dotfiles folder:
+
+```
+└── ~/.dotfiles
+    ├── vim
+    │   └── .vimrc
+    └── bash
+        ├── .bashrc
+        ├── .bash_profile
+        └── .bash_logout
 ```
 
 
+In this example, the `.vimrc` file is moved to the `~/.dotfiles/vim` directory, and the stow command is used to link it to the home directory.
 
--->
+The stow command will create a symbolic link in the home directory to the `.vimrc` file in the `~/.dotfiles/vim` directory.
+
+This allows you to keep all your configuration files in one place and easily manage them using stow.
+
+```bash
+stow -d ~/.dotfiles -t ~ -S vim
+```
+
+## Managing dotfiles with Git across multiple machines
+
+If you want to manage your dotfiles across multiple machines using Git, you can create a Git repository for your dotfiles and use stow to manage the symbolic links.
+
+Here is an example of how you can set up a Git repository for your dotfiles:
+
+1. Create a Git repository for your dotfiles:
+
+```bash
+cd ~/.dotfiles
+git init
+```
+
+2. Add your dotfiles to the repository:
+
+```bash
+git add .
+git commit -m "Initial commit"
+```
+
+3. Push the repository to a remote Git server:
+
+```bash
+git remote add origin <remote-repository-url>
+git push -u origin master
+```
+
