@@ -182,7 +182,6 @@ Here is an [example bash script](./.bin/sync-dotfiles.sh) of how you can clone t
 
 You can run this script on each machine to sync your dotfiles and manage the symbolic links using stow.
 
-# Conclusion
 
 
 # References
