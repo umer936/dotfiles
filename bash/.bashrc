@@ -2,6 +2,7 @@
 
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # Source global definitions
+# ------------------------------------------------------
 if [ -f /etc/bashrc ]; then
     	. /etc/bashrc
 fi
@@ -11,6 +12,9 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash 
+
+eval "$(~/.local/bin/zoxide init bash)" 
 #Environment Variables
 # ------------------------------------------------------
 export EMAIL="umer936@gmail.com"
