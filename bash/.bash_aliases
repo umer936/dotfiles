@@ -63,9 +63,6 @@ alias phpunit='vendor/bin/galley test --testdox'
 alias treed='tree -L 2 -d -I vendor' 
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash 
-
-eval "$(~/.local/bin/zoxide init bash)" 
 
 
 
