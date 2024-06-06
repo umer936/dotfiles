@@ -89,12 +89,6 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias lr='ls -halFR'
-alias ll='ls -halF'
-alias la='ls -A'
-alias l='ls -CF'
-alias lsd='ls -l | grep "^d"' # only directories
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -185,17 +179,25 @@ export DEBFULLNAME="Umer Salman"
 
 #eval "$(_DOITLIVE_COMPLETE=source doitlive)"
 
-export GAZEBO_MODEL_PATH=/media/umer936/0048c298-fac2-41c0-93a9-44888b949733/TAR/ardupilot_gazebo/gazebo_models
+# TODO: MOVE THESE TO A .ros_aliases and source in here if path /opt/ros exists (see line 78)
+# export GAZEBO_MODEL_PATH=/media/umer936/0048c298-fac2-41c0-93a9-44888b949733/TAR/ardupilot_gazebo/gazebo_models
 # source /opt/ros/kinetic/setup.bash
 # source ~/catkin_ws/devel/setup.bash
 export PATH=/usr/lib/ccache:$PATH:$HOME/ardupilot/Tools/autotest
 
 eval "$(fasd --init auto)"
-alias v='f -e vim' # quick opening files with vim
-alias e='f -e subl' # quick opening files with subl
-alias vid='f -e vlc' # quick opening files with vlc
-alias o='a -e xdg-open' # quick opening files with xdg-open
+eval "$(thefuck --alias)"
 
-export EDITOR=subl
+if [ -d "$HOME/Android/Sdk/platform-tools" ] ; then
+    PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+fi
 
-alias UTkamek='ssh -X usalman@kamek.ece.utexas.edu'
+cl() {
+    local dir="$1"
+    local dir="${dir:=$HOME}"
+    if [[ -d "$dir" ]]; then
+        cd "$dir" >/dev/null; ls
+    else
+        echo "bash: cl: $dir: Directory not found"
+    fi
+}
