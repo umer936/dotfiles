@@ -1,4 +1,24 @@
-$include /etc/inputrc
+$include /etc/inputrc 
+
+# inputrc file are made for the purpose of defining keybindings and macros
+# for the readline library, which is used by many programs including bash
+# and python.
+
+# This file is sourced by bash when it is run interactively.  It
+# should contain commands to set up the command line prompt and other
+# interactive features of the shell.
+
+
+# For example, the following line will bind the "Ctrl + x" key combination
+# to the "cut" action, which will delete the text that is currently selected
+# in the terminal.
+# "\C-x": cut
+
+# Or using the 'set' command for setting options for the readline library.
+# For example, the following line will set the 'cut-directions' option to 'on', which
+# will allow the user to cut text in both directions.
+# set cut-directions on   # default is to cut the text to the left of the cursor
+
 
 # Perform file completion in a case insensitive fashion
 set completion-ignore-case on
@@ -6,9 +26,9 @@ set completion-ignore-case on
 # Treat hyphens and underscores as equivalent
 set completion-map-case on
 
+# Show all possible completions on the tab key
 set visible-stats on
-
-set show-all-if-ambiguous on
+set show-all-if-ambiguous on 
 
 # Search commands through history
 # arrow up
