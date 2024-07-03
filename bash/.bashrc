@@ -201,3 +201,18 @@ cl() {
         echo "bash: cl: $dir: Directory not found"
     fi
 }
+
+
+_vim_with_fuzzy() {
+    local input="$1"
+    local match=$(find . -maxdepth 1 -type f -name "*$input*" | head -n 1)
+
+    if [ -n "$match" ]; then
+        vim "$match"
+    else
+        echo "No matching file found for '$input'."
+        vim "$input"
+    fi
+}
+
+alias vim='_vim_with_fuzzy'
